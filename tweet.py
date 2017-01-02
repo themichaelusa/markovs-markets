@@ -1,6 +1,8 @@
 import newspaper 
-# from newspaper import news_pool
 import markovify
+# from newspaper import news_pool
+
+############## NEWSPAPER ##################
 
 marketwatch = newspaper.build('http://www.marketwatch.com')
 
@@ -20,5 +22,23 @@ mainarticle = marketwatch.articles[0] # referencing market watch as source
 mainarticle.download() # gets most recent article
 mainarticle.parse() # parses text from article
 mainarticle.nlp() # preps for extracting summary
-print (mainarticle.summary)
+
+mprint = open (corpus.txt, 'w')
+mprint.write (mainarticle.summary)
+
+############## MARKOVIFY ##################
+
+with open ("/Users/michaelusa/Documents/Dev/markovs-markets/corpus.txt") as r:
+	text = r.read()
+
+model = markovify.Text(text)
+m2print = open (outbound.txt, 'w')
+
+for i in range(3):
+	m2print.write (model.make_short_sentence(140))
+
+
+
+
+
 
