@@ -1,9 +1,9 @@
 import newspaper 
 # from newspaper import news_pool
+from pyteaser import SummarizeUrl
 
 ############## NEWSPAPER ##################
-
-marketwatch = newspaper.build('http://www.marketwatch.com')
+newspaper.languages()
 
 # bloomberg = newspaper.build('https://www.bloomberg.com')
 # cnbc = newspaper.build('http://www.cnbc.com')
@@ -13,18 +13,24 @@ marketwatch = newspaper.build('http://www.marketwatch.com')
 # news_pool.set(papers, threads_per_source=2) # (3*2) = 6 threads total
 # news_pool.join()
 
-while True: 
+marketwatch = newspaper.build('http://www.marketwatch.com')
 
-	for article in marketwatch.articles: # gets recent articles && checks for dupes
+while True:
+
+	corpurl = ''
+	
+	for article in marketwatch.articles:
 		marketwatch.size()
+		corpurl = article.url
+		print(corpurl)
 
-	mainarticle = marketwatch.articles[0] # referencing market watch as source
-	mainarticle.download() # gets most recent article
-	mainarticle.parse() # parses text from article
-	mainarticle.nlp() # preps for extracting summary
+	summary = str(SummarizeUrl(corpurl))
 
-	mprint = open (corpus.txt, 'w') 
-	mprint.write (mainarticle.summary + "/n") # writes summaries to Markov Corpus
+	mprint = open ('corpus.txt', 'w') 
+	mprint.write (summary) # writes summaries to Markov Corpus
+
+
+	
 
 	
 
