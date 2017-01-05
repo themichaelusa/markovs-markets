@@ -2,14 +2,14 @@ apps:
     marmarkets:
 
         # From dev.twitter.com
-        consumer_key: 'zzJKH30FkStq4rjZUMo2aZqRb'
-        consumer_secret: 'h5Le3GKZB1Q3e7QRw7ZpRAQHfS3ufpB2vlVWovIZJmtkxkGMp2'
+        consumer_key: ''
+        consumer_secret: ''
 
 users:
     markovsmarkets:
         # oauth with twitter to get these
-        key: '815800317963042816-kPE7AMUpxOthHMNMEUUtCfPovJMpuLH'
-        secret: '1IFrZT7rdC6wAIEgshy5LXydwCDijTV5Mo16Zu9X4OrGg'
+        key: ''
+        secret: ''
 
         # this should match one of the apps above
         app: marmarkets
