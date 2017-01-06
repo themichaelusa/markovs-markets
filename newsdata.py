@@ -1,12 +1,13 @@
+import nltk
 import newspaper 
-from pyteaser import SummarizeUrl
+from newspaper import Article
 # from newspaper import news_pool
 
 ############## NEWSPAPER ##################
 
 newspaper.languages()
 
-marketwatch = newspaper.build('http://www.marketwatch.com')
+marketwatch = newspaper.build(u'http://www.marketwatch.com', language = 'en')
 
 # bloomberg = newspaper.build('https://www.bloomberg.com')
 # cnbc = newspaper.build('http://www.cnbc.com')
@@ -18,16 +19,19 @@ marketwatch = newspaper.build('http://www.marketwatch.com')
 
 while True:
 
-	corpurl = ''
+	marketwatch.size() # updates total size on first run
 
-	for article in marketwatch.articles:
-		marketwatch.size()
-		corpurl = article.url
-
-	summary = str(SummarizeUrl(corpurl))
-
-	mprint = open ('corpus.txt', 'a') #append tag
-	mprint.write (summary) # writes summaries to Markov Corpus
+	if (marketwatch.size() > 0 and marketwatch.size() <=1):
+		articlemw = marketwatch.articles[0]
+		articlemw.download()
+		articlemw.parse()
+		articlemw.nlp()
+		pushsummary = str(articlemw.summary) # str fixes ascii issue
+		print (pushsummary) # nice readout in terminal
+		mprint = open ('corpus.txt', 'a') #append tag
+		mprint.write (pushsummary) # writes summaries to Markov Corpus
+	
+	
 
 
 	
