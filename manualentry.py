@@ -1,15 +1,21 @@
-from pyteaser import SummarizeUrl
-
+import newspaper 
+from newspaper import Article
 ############## SUMMARIZER ##################
 
 while True:
 
-	corpurl = input('Please paste in the URL of your choice! It will be summarized and placed into corpus.txt')
+	corpurl = raw_input('Please paste in the URL of your choice! It will be summarized and placed into corpus.txt')
 
-	summary = str(SummarizeUrl(corpurl)) # summarizes
+	a = Article(corpurl, language='en') 
+	a.download()
+	a.parse()
+	a.nlp()
+	
+	summsend = str(a.summary) # summarizes
+	print(summsend)
 
-	mprint = open ('corpus.txt', 'w') 
-	mprint.write (summary) # writes summaries to Markov Corpus
+	mprint = open ('corpus.txt', 'a') 
+	mprint.write (summsend) # writes summaries to Markov Corpus
 
 
 
