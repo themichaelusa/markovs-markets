@@ -8,6 +8,3 @@ Big help from:
 
 https://github.com/codelucas/newspaper
 
-https://github.com/xiaoxu193/PyTeaser
-
-https://github.com/fitnr/twitter_markov
