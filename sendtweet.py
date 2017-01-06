@@ -1,25 +1,23 @@
-import markovify
-from twitter_markov import TwitterMarkov
+import os
 import time
+import twitter
+from markovbot import MarkovBot
 
-############## MARKOVIFY ##################
+############## MARKOVBOT ##################
 
-with open ('/Users/michaelusa/Documents/Dev/markovs-markets/corpus.txt') as r:
-	text = r.read()
+tweetbot = MarkovBot() # initializes Mbot instance
 
-mmodel = markovify.Chain(text, 2, model = None) # uses corpus.txt as model for tweets
-# m2print = open (outbound.txt, 'a')
+tweetbot.twitter_login(cons_key, cons_secret, access_token, access_token_secret) #login
 
-for i in range(3): 
-	 print(mmodel.make_short_sentence(140))
-	# m2print.write (model.make_short_sentence(140) + "/n") #writes one tweet to outbound.txt plus newline
+dirname = os.path.dirname(os.path.abspath(__file__)) # Get the current directory's path
+corpread = os.path.join(dirname, 'corpus.txt') # Construct the path to the book
+tweetbot.read(corpread)
 
-
-############## TWEET + MARKOVIFY ##################
-
-# while True: 
-	# sendtweet = TwitterMarkov('markovsmarkets', 'corpus.txt', config_file='bots.yaml')
-	# outbound = sendtweet.compose()
+while True: 
+	sendout = tweetbot.generate_text(20) # tweet of 20 words
+	tweetbot.twitter_tweeting_start(days=0, hours=, minutes=10, keywords=None, prefix=None, suffix='#MAGA')
 	# time.sleep(600)
+
+
 
 
