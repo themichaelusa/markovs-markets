@@ -1,3 +1,4 @@
+import sys
 import nltk
 import newspaper 
 from newspaper import Article
@@ -19,9 +20,12 @@ marketwatch = newspaper.build(u'http://www.marketwatch.com', language = 'en')
 
 while True:
 
+	reload(sys)
+	sys.setdefaultencoding('utf-8')
+
 	marketwatch.size() # updates total size on first run
 
-	if (marketwatch.size() > 0 and marketwatch.size() <=1):
+	if (marketwatch.size() > 0):
 		articlemw = marketwatch.articles[0]
 		articlemw.download()
 		articlemw.parse()
