@@ -1,8 +1,14 @@
+import sys
 import newspaper 
 from newspaper import Article
+
 ############## SUMMARIZER ##################
 
+reload(sys)
+
 while True:
+
+	sys.setdefaultencoding('utf-8')
 
 	corpurl = raw_input('Please paste in the URL of your choice! It will be summarized and placed into corpus.txt')
 
